@@ -104,13 +104,22 @@
       background-color: rgba(255, 255, 255, 0.8);
       color: var(--black);
       border: none;
-      padding: 20px 40px;
-      font-size: 1.25rem;
-      font-weight: regular;
+      font-weight: normal;
       border-radius: 0;
       cursor: pointer;
-      margin: 20px;
       transition: background-color 0.3s;
+    }
+
+    .ask-btn {
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      margin: 16px;
+    }
+
+    .small-btn {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      margin: 8px;
     }
 
     button:hover {
@@ -120,7 +129,7 @@
     #result {
       margin-top: 60px;
       font-size: 1.5rem;
-      font-weight: regular;
+      font-weight: normal;
       min-height: 120px;
       text-align: center;
     }
@@ -156,13 +165,13 @@
     <h1>Can I Rage Quit?</h1>
 
     <div class="actions">
-      <button onclick="getRageQuitResponse()">Ask the Universe</button>
+      <button class="ask-btn" onclick="getRageQuitResponse()">Ask the Universe</button>
 
       <div id="result"></div>
 
       <div>
-        <button id="generatePDF" style="display:none;" onclick="generatePDF()">Print a Resignation Letter</button>
-        <button id="askAgain" style="display:none;" onclick="getRageQuitResponse()">Ask Again</button>
+        <button class="small-btn" id="generatePDF" style="display:none;" onclick="generatePDF()">Print a Resignation Letter</button>
+        <button class="small-btn" id="askAgain" style="display:none;" onclick="getRageQuitResponse()">Ask Again</button>
       </div>
     </div>
 
