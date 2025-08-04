@@ -155,6 +155,11 @@
       color: #ccc;
     }
 
+    .result-mode {
+      background: black !important;
+      background-image: none !important;
+    }
+
     @media (max-width: 768px) {
       #result {
         margin-bottom: 40px;
@@ -222,6 +227,8 @@
     ];
 
     function getRageQuitResponse() {
+      document.body.classList.add('result-mode');
+      
       const index = Math.floor(Math.random() * responses.length);
       const { verdict, advice } = responses[index];
 
