@@ -81,20 +81,20 @@
     }
 
     button {
-      background-color: var(--white);
+      background-color: rgba(255, 255, 255, 0.8);
       color: var(--black);
       border: none;
       padding: 20px 40px;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: bold;
-      border-radius: 10px;
+      border-radius: 0;
       cursor: pointer;
       margin: 20px;
       transition: background-color 0.3s;
     }
 
     button:hover {
-      background-color: #ccc;
+      background-color: #efb805;
     }
 
     #result {
@@ -136,13 +136,13 @@
     <h1>Can I Rage Quit?</h1>
 
     <div class="actions">
-      <button onclick="getRageQuitResponse()">🔘 Ask the Universe</button>
+      <button onclick="getRageQuitResponse()">Ask the Universe</button>
 
       <div id="result"></div>
 
       <div>
-        <button id="generatePDF" style="display:none;" onclick="generatePDF()">📝 Print a Resignation Letter</button>
-        <button id="askAgain" style="display:none;" onclick="getRageQuitResponse()">🔁 Ask Again</button>
+        <button id="generatePDF" style="display:none;" onclick="generatePDF()">Print a Resignation Letter</button>
+        <button id="askAgain" style="display:none;" onclick="getRageQuitResponse()">Ask Again</button>
       </div>
     </div>
 
