@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Can I Rage Quit?</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: url('joshua-davis-Z0U5hXqo_yk-unsplash.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--white);
+    }
+
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader h2 {
+      color: #fff;
+      font-size: 2rem;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      min-height: 100vh;
+      padding: 80px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 12vw;
+      margin: 0;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1;
+      word-break: break-word;
+    }
+
+    .actions {
+      margin-top: 60px;
+    }
+
+    button {
+      background-color: var(--white);
+      color: var(--black);
+      border: none;
+      padding: 20px 40px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 20px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ccc;
+    }
+
+    #result {
+      margin-top: 60px;
+      font-size: 2rem;
+      font-weight: bold;
+      min-height: 120px;
+      text-align: center;
+    }
+
+    #result em {
+      display: block;
+      font-size: 1.25rem;
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    .logo {
+      display: block;
+      margin: 100px auto 20px;
+      width: 80px;
+      opacity: 0.75;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader">
+    <h2>Loading your existential options...</h2>
+  </div>
+
+  <div class="overlay">
+    <h1>Can I Rage Quit?</h1>
+
+    <div class="actions">
+      <button onclick="getRageQuitResponse()">🔘 Ask the Universe</button>
+
+      <div id="result"></div>
+
+      <div>
+        <button id="generatePDF" style="display:none;" onclick="generatePDF()">📝 Print a Resignation Letter</button>
+        <button id="askAgain" style="display:none;" onclick="getRageQuitResponse()">🔁 Ask Again</button>
+      </div>
+    </div>
+
+    <img class="logo" src="Asset%203@2x.png" alt="Can I Rage Quit logo" />
+    <div class="footer">Another tool from Cantrightnow.com</div>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        loader.classList.add('hidden');
+      }, 1000);
+    });
+
+    const responses = [
+      {
+        verdict: "YES — and here’s how to make a scene.",
+        advice: "Bring a fog machine. Exit backwards. Don’t explain."
+      },
+      {
+        verdict: "NO — but here’s how to passive-aggressively cope.",
+        advice: "Set your Slack status to 'Emotionally Out of Office.'"
+      },
+      {
+        verdict: "YES — slam the laptop shut and strut.",
+        advice: "Bonus points for a dramatic sigh." 
+      },
+      {
+        verdict: "NO — because rent is due.",
+        advice: "But you can mentally rage quit every hour on the hour."
+      },
+      {
+        verdict: "YES — leave mid-Zoom with no explanation.",
+        advice: "Leave your camera on and walk into the sunset."
+      }
+    ];
+
+    function getRageQuitResponse() {
+      const index = Math.floor(Math.random() * responses.length);
+      const { verdict, advice } = responses[index];
+
+      document.getElementById("result").innerHTML = `${verdict}<br><em>${advice}</em>`;
+      document.getElementById("generatePDF").style.display = "inline-block";
+      document.getElementById("askAgain").style.display = "inline-block";
+    }
+
+    function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const resignationText = `
+To Whom It May Concern (you know who you are),
+
+I hereby tender my resignation, effective immediately — or as soon as I finish typing this sentence. 
+I’ve endured the emails, the meetings that should’ve been Slack messages, and the soul-leeching weight of pretending to care.
+
+Consider this my final act of emotional labor.
+
+Please forward my remaining dignity to my personal email. I am taking my stapler and leaving with absolutely no intention of ever checking in.
+
+Sincerely,
+[Your Name, but angrier]
+      `;
+
+      doc.setFont("times", "normal");
+      doc.setFontSize(12);
+      doc.text(resignationText, 10, 20, { maxWidth: 180, lineHeightFactor: 1.5 });
+
+      doc.save("rage_quit_resignation_letter.pdf");
+    }
+  </script>
+</body>
+</html>
